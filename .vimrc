@@ -30,8 +30,28 @@ set incsearch                   " search as characters are entered
 set hlsearch                    " highlight matches
 set nohls
 
+syntax on
+
+"""""""""""""""""""""""""""""""""""""
+" plug-vim plugin manager
+"""""""""""""""""""""""""""""""""""""
+
+" Setting up vim-plug plugin manager
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'morhetz/gruvbox'
+call plug#end()
+
+" gruvbox style 
+colorscheme gruvbox
+set background=dark
+
 """""""""""""""""""""""""""""""""""""
 " Custom mappings
 """""""""""""""""""""""""""""""""""""
- 
 
