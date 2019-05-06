@@ -48,7 +48,6 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 " gruvbox style 
-colorscheme gruvbox
 set background=dark
 
 """""""""""""""""""""""""""""""""""""
