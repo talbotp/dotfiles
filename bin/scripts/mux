@@ -2,7 +2,9 @@
 
 # Script to make a nice tmux layout, with default name dev.
 
+##########################################
 # Functions
+##########################################
 
 function to_attach() {
     read -p "Attach to tmux session $name? (y/n) " attach
@@ -18,7 +20,9 @@ function to_attach() {
     fi
 }
 
+##########################################
 # Main
+##########################################
 
 # Set name of session, defaults to "dev".
 if [ "$1" != "" ]; then
