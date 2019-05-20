@@ -1,5 +1,6 @@
 [alias]
     s = status -s
+    st = status  
     a = add
     n = checkout -b 
     l = log
