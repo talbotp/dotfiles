@@ -5,26 +5,30 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-#################
-# Functions
-#################
+########################################
+##  Functions
+########################################
 
 git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-#################
-# Aliases
-#################
+########################################
+## Aliases
+########################################
 
 alias la="ls --all"
 alias ll="ls --all -l"
 
 alias g="git"
 
-#################
-# Exports
-#################
+alias nh="nohup"
+
+alias g-c="google-chrome"
+
+########################################
+## Exports
+########################################
 
 # Golang 
 export GOROOT="/usr/local/go"
@@ -44,5 +48,4 @@ LIGHTRED="\[\033[1;31m\]"
 WHITE="\[\033[0;37m\]"
 RESET="\[\033[0;00m\]"
 
-PS1="$LIGHTGREEN\u@\h $WHITE\W $LIGHTRED\$(git_branch)$RESET$ "
-export PS1
+export PS1="$LIGHTGREEN\u@\h $WHITE\W $LIGHTRED\$(git_branch)$RESET$ "
