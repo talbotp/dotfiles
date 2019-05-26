@@ -1,8 +1,9 @@
 [alias]
     s = status -s
+    st = status
     a = add
     n = checkout -b 
     l = log
-    c = commit -m 
+    c = commit -m
     amend = !git add -A && git commit --amend --no-edit
     p = !git push origin $(git rev-parse --abbrev-ref HEAD)
