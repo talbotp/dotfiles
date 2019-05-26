@@ -24,7 +24,7 @@ alias g="git"
 
 alias nh="nohup"
 
-alias g-c="google-chrome"
+alias g-c="nohup google-chrome &"
 
 ########################################
 ## Exports
