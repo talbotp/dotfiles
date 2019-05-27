@@ -5,26 +5,31 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-#################
-# Functions
-#################
+########################################
+##  Functions
+########################################
 
 git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/u'
 }
 
-#################
-# Aliases
-#################
+########################################
+## Aliases
+########################################
 
 alias la="ls --all"
 alias ll="ls --all -l"
 
 alias g="git"
 
-#################
-# Exports
-#################
+alias nh="nohup"
+
+alias g-c="nohup google-chrome &"
+alias ff="nohup firefox &"
+
+########################################
+## Exports
+########################################
 
 # Golang 
 export GOROOT="/usr/local/go"
@@ -39,6 +44,9 @@ PATH="$GOROOT/bin:$PATH"
 export PATH
 
 # Command prompt
-PS1="\[\033[36m\]\u@\h \[\033[33;1m\]\W \033[00;32m\]\$(git_branch)\[\033[m\]$ "
-export PS1
+LIGHTGREEN="\[\033[1;32m\]"
+LIGHTRED="\[\033[1;31m\]"
+WHITE="\[\033[0;37m\]"
+RESET="\[\033[0;00m\]"
 
+export PS1="$LIGHTGREEN\u@\h $WHITE\W $LIGHTRED\$(git_branch)$RESET$ "
