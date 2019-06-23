@@ -5,12 +5,15 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# Prevent terminal hanging on missing commands
+unset command_not_found_handle
+
 ########################################
 ##  Functions
 ########################################
 
 git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/u'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
 ########################################
@@ -22,10 +25,15 @@ alias ll="ls --all -l"
 
 alias g="git"
 
-alias nh="nohup"
+alias cl="clear"
 
-alias g-c="nohup google-chrome &"
-alias ff="nohup firefox &"
+# Typically ignore nohup logs.
+alias nh="nohup_nolog"
+
+alias g-c="nohup_nolog google-chrome"
+alias ff="nohup_nolog firefox"
+
+alias idea="nohup_nolog /home/parker/bin/ide/idea-IC-191.7479.19/bin/idea.sh"
 
 ########################################
 ## Exports

@@ -1,0 +1,10 @@
+#!/bin/bash
+# Run nohup without logs to avoid taking up space.
+#
+# Takes one argument.
+
+if [ $# -ne 1 ]; then
+    echo "Please provide one argument."  
+fi
+
+nohup $1 >& /dev/null &

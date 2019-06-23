@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Script to make a nice tmux layout, with default name dev.
+
+##########################################
+# Functions
+##########################################
+
+function to_attach() {
+    read -p "Attach to tmux session $name? (y/n) " attach
+    if [ "$attach" = "y" ] || [ "$attach" = "Y" ]; then
+        echo "Attaching to tmux session $name"
+        tmux attach-session -t $name
+        exit 0
+    elif [ "$attach" = "n" ] || [ "$attach" = "n" ]; then
+        echo "Exiting"
+        exit 0
+    else
+        to_attach
+    fi
+}
+
+##########################################
+# Main
+##########################################
+
+# Set name of session, defaults to "dev".
+if [ "$1" != "" ]; then
+    name="$1"
+else
+    name="dev"
+fi
+
+# Exit if name in use.
+if [ "$(tmux ls | grep -e "$name:")" != "" ]; then
+    echo "$name is already an active tmux session."
+    to_attach
+fi
+
+# Start detached tmux 
+tmux new -d -s $name
+
+# Split panes
+tmux split-window -t $name:0 -h \;\
+     split-window -t $name:0 -v
+
+# Attach window
+tmux attach -t $name
+
