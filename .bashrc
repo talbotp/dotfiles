@@ -16,6 +16,14 @@ git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+nohup_nolog() {
+  if [ $# -ne 1 ]; then
+    echo "Please provide one argument."
+  else
+    nohup $1 >& /dev/null &
+  fi
+}
+
 ########################################
 ## Aliases
 ########################################
@@ -27,7 +35,7 @@ alias g="git"
 
 alias cl="clear"
 
-# Typically ignore nohup logs.
+# Typically ignore nohup logs
 alias nh="nohup_nolog"
 
 alias g-c="nohup_nolog google-chrome"
