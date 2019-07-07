@@ -59,6 +59,10 @@ PATH="$GOPATH/bin:$PATH"
 PATH="$GOROOT/bin:$PATH"
 export PATH
 
+# Erlang
+ERL_PATH="/home/parker/bin/erlang/22.0/activate"
+source ERL_PATH
+
 # Command prompt
 LIGHTGREEN="\[\033[1;32m\]"
 LIGHTRED="\[\033[1;31m\]"
