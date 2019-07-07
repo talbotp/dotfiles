@@ -1,0 +1,27 @@
+#!/bin/bash
+################################################
+# Change and list available erlang versions etc.
+# Requires kerl -> https://github.com/kerl/kerl
+################################################
+
+if [ $# -ne 1 ]; then 
+    echo "Use cherl to list installed Erlang versions, and activate them."
+    echo "Usage: cherl releases|builds|installations|<VERSION>"
+elif [ "$1" = "releases" ]; then
+    kerl list releases 
+elif [ "$1" = "builds" ]; then
+    kerl list builds
+elif [ "$1" = "installs" ]; then
+    kerl list installations
+else
+    is_installation=$(kerl list installations | less | grep "$1 ")
+    if [ "$is_installation" = "" ]; then
+        echo "No Erlang installation found."
+        exit 1
+    fi
+    # Seperate out the version and the installation path.
+    vars=($is_installation)
+    # Activate the installed erlang version.
+    source "${vars[1]}/activate"
+    echo "Activated Erlang version ${vars[0]} at location ${vars[1]}"
+fi
