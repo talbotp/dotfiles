@@ -12,7 +12,7 @@ unset command_not_found_handle
 ##  Functions
 ########################################
 
-git_branch() {
+function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
@@ -64,9 +64,9 @@ ERL_PATH="$HOME/bin/erlang/22.0/activate"
 source "$ERL_PATH"
 
 # Command prompt
-LIGHTGREEN="\[\033[1;32m\]"
-LIGHTRED="\[\033[1;31m\]"
-WHITE="\[\033[0;37m\]"
-RESET="\[\033[0;00m\]"
+WHITE="\[\033[1;37m\]"
+YELLOW="\[\033[1;33m\]"
+NO_COLOUR="\[\033[0m\]"
+GREEN="\[\033[1;32m\]"
 
-export PS1="$LIGHTGREEN\u@\h $WHITE\W $LIGHTRED\$(git_branch)$RESET$ "
+PS1="\[\033[1;37m\]λ $GREEN\w$YELLOW\$(parse_git_branch)$NO_COLOUR "

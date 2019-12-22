@@ -1,0 +1,26 @@
+#!/bin/bash
+#===================================================
+# Take backups of existing env files.
+# Move all git env files into the correct location.
+#===================================================
+
+HOME_DIR=$HOME
+BACKUP_DIR=$HOME_DIR/env_backups
+ENV_FILES=(bin .bashrc .gitconfig .tmux.conf .vimrc .vim)
+
+NOW="$(date +'%Y-%m-%dT%H.%M.%S')"
+CURRENT_BACKUP="$BACKUP_DIR/$NOW"
+mkdir -p "$CURRENT_BACKUP"
+
+echo "Backing up existing environment config files from $HOME_DIR into $CURRENT_BACKUP..."
+for file in "${ENV_FILES[@]}"; do
+    cp --recursive $HOME_DIR/$file "$CURRENT_BACKUP"
+done                                              
+
+echo "Copying git environment config files from $(pwd) to $HOME_DIR"
+for file in "${ENV_FILES[@]}"; do
+    cp --recursive ./$file $HOME_DIR
+done                                              
+
+echo "Environemnt config files installed."
+
