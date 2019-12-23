@@ -1,26 +1,37 @@
 #!/bin/bash
 #===================================================
-# Take backups of existing env files.
+# Take backups of existing dot files.
+# Take backups of bin folder, but only overwrite 
+# specific files in the bin dir.
 # Move all git env files into the correct location.
 #===================================================
 
 HOME_DIR=$HOME
 BACKUP_DIR=$HOME_DIR/env_backups
-ENV_FILES=(bin .bashrc .gitconfig .tmux.conf .vimrc .vim)
+DOT_FILES=(.bashrc .gitconfig .tmux.conf .vimrc .vim)
+BIN_DIR=$HOME_DIR/bin
+BIN_FILES=(scripts)
 
 NOW="$(date +'%Y-%m-%dT%H.%M.%S')"
 CURRENT_BACKUP="$BACKUP_DIR/$NOW"
 mkdir -p "$CURRENT_BACKUP"
+mkdir -p "$CURRENT_BACKUP/bin"
 
+# Create backup
 echo "Backing up existing environment config files from $HOME_DIR into $CURRENT_BACKUP..."
-for file in "${ENV_FILES[@]}"; do
+for file in "${DOT_FILES[@]}"; do
     cp --recursive $HOME_DIR/$file "$CURRENT_BACKUP"
-done                                              
+done
+cp --recursive $BIN_DIR "$CURRENT_BACKUP"
 
+# Overwrite existing env files.
 echo "Copying git environment config files from $(pwd) to $HOME_DIR"
-for file in "${ENV_FILES[@]}"; do
+for file in "${DOT_FILES[@]}"; do
     cp --recursive ./$file $HOME_DIR
-done                                              
+done
+for file in "${BIN_FILES[@]}"; do
+    cp --recursive ./bin/$file $BIN_DIR 
+done
 
 echo "Environemnt config files installed."
 
