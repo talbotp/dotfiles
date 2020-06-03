@@ -1,6 +1,3 @@
-"""""""""""""""""""""""""""""""""""""
-" Change how vim works.
-"""""""""""""""""""""""""""""""""""""
 
 set expandtab       "Use softtabstop spaces instead of tab characters for indentation
 set shiftwidth=4    "Indent by 4 spaces when using >>, <<, == etc.
@@ -10,30 +7,20 @@ set autoindent      "Keep indentation from previous line
 set smartindent     "Automatically inserts indentation in some cases
 set cindent         "Like smartindent, but stricter and more customisable
 
-" Show line numbers
-set number
+set number          "Show line numbers
+set showcmd         "Show last command entered.
+set cursorline      "Show line where cursor is 
+set wildmenu        "Show menu 
+set showmatch       "Highlight parenthesis pairs
 
-" Show last command entered.
-set showcmd
-
-" Show line where cursor is 
-set cursorline
-
-" Load indents for specific files
-filetype indent on 
-
-" Show menu 
-set wildmenu
-
-" Highlight parenthesis pairs
-set showmatch
+filetype indent on  "Load indents for specific files
 
 " Better searching
-set incsearch                   " search as characters are entered
-set hlsearch                    " highlight matches
+set incsearch       "Search as characters are entered
+set hlsearch        "Highlight matches
 set nohls
 
-syntax on
+syntax on           "Enable syntax highlighting
 
 """""""""""""""""""""""""""""""""""""
 " plug-vim plugin manager
@@ -47,13 +34,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'morhetz/gruvbox'
+    Plug 'morhetz/gruvbox'
 call plug#end()
 
-" gruvbox style 
 set background=dark
-
-"""""""""""""""""""""""""""""""""""""
-" Custom mappings
-"""""""""""""""""""""""""""""""""""""
 
