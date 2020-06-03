@@ -1,4 +1,21 @@
 
+" Set up vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+    Plug 'morhetz/gruvbox' 
+    Plug 'itchyny/lightline.vim'
+    Plug 'preservim/nerdtree'
+    Plug 'editorconfig/editorconfig-vim'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'dense-analysis/ale'
+call plug#end()
+
+
 set expandtab       "Use softtabstop spaces instead of tab characters for indentation
 set shiftwidth=4    "Indent by 4 spaces when using >>, <<, == etc.
 set softtabstop=4   "Indent by 4 spaces when pressing <TAB>
@@ -15,27 +32,28 @@ set showmatch       "Highlight parenthesis pairs
 
 filetype indent on  "Load indents for specific files
 
-" Better searching
 set incsearch       "Search as characters are entered
 set hlsearch        "Highlight matches
 set nohls
 
 syntax on           "Enable syntax highlighting
 
-"""""""""""""""""""""""""""""""""""""
-" plug-vim plugin manager
-"""""""""""""""""""""""""""""""""""""
+" Change windows in vim with Ctrl + Arrow keys
+map <C-Right> <C-w>l 
+map <C-Left> <C-w>h
 
-" Setting up vim-plug plugin manager
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+""" gruvbox
+set background=dark 
 
-call plug#begin('~/.vim/plugged')
-    Plug 'morhetz/gruvbox'
-call plug#end()
+""" lightline
+set laststatus=2    "For when lightline doesn't appear.
+set noshowmode      "Don't show mode, as in lightline.
 
-set background=dark
+""" nerdtree
+autocmd vimenter * NERDTree | wincmd w    "Start nerdtree on new vim, and refocus to chosen file. TODO make this not lose the lightline.
+map <C-o> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif   " Close vim if nerdtree is last window open.
 
+""" gitgutter
+let g:gitgutter_grep=''
+set updatetime=250      "250ms
