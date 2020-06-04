@@ -13,6 +13,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'editorconfig/editorconfig-vim'
     Plug 'airblade/vim-gitgutter'
     Plug 'dense-analysis/ale'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 
@@ -57,3 +59,4 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 """ gitgutter
 let g:gitgutter_grep=''
 set updatetime=250      "250ms
+
