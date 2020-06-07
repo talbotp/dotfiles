@@ -44,6 +44,8 @@ syntax on           "Enable syntax highlighting
 " Change windows in vim with Ctrl + Arrow keys
 map <C-Right> <C-w>l 
 map <C-Left> <C-w>h
+map <C-Up> <C-w>k
+map <C-Down> <C-w>j
 
 """ gruvbox
 set background=dark 
