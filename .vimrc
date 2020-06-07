@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'dense-analysis/ale'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
 
