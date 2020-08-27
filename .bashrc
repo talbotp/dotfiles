@@ -28,6 +28,7 @@ nohup_nolog() {
 ## Aliases
 ########################################
 
+alias ls='ls --color=auto'
 alias la="ls --all"
 alias ll="ls --all -l"
 
@@ -60,7 +61,7 @@ PATH="$GOROOT/bin:$PATH"
 export PATH
 
 # Erlang
-ERL_PATH="$HOME/bin/erlang/22.0/activate"
+ERL_PATH="$HOME/bin/erlang/23.0/activate"
 source "$ERL_PATH"
 
 # Command prompt

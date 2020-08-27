@@ -8,7 +8,7 @@
 
 INSTALL_DIR=$HOME
 BACKUP_DIR=$INSTALL_DIR/dotfile_backups
-DOT_FILES=(.bashrc .gitconfig .tmux.conf .vimrc .editorconfig)
+DOT_FILES=(.bashrc .gitconfig .tmux.conf .vimrc .editorconfig .inputrc)
 BIN_DIR=$INSTALL_DIR/bin
 BIN_FILES=(scripts)
 
