@@ -6,26 +6,27 @@
 # Move all git env files into the correct location.
 #===================================================
 
-HOME_DIR=$HOME
-BACKUP_DIR=$HOME_DIR/env_backups
-DOT_FILES=(.bashrc .gitconfig .tmux.conf .vimrc .vim)
-BIN_DIR=$HOME_DIR/bin
+INSTALL_DIR=$HOME
+BACKUP_DIR=$INSTALL_DIR/dotfile_backups
+DOT_FILES=(.bashrc .gitconfig .tmux.conf .vimrc .editorconfig)
+BIN_DIR=$INSTALL_DIR/bin
 BIN_FILES=(scripts)
 
 NOW="$(date +'%Y-%m-%dT%H.%M.%S')"
 CURRENT_BACKUP="$BACKUP_DIR/$NOW"
+
 mkdir -p "$CURRENT_BACKUP"
 mkdir -p "$CURRENT_BACKUP/bin"
 
 # Create backup
-echo "Backing up existing environment config files from $HOME_DIR into $CURRENT_BACKUP..."
+echo "Backing up existing environment config files from $INSTALL_DIR into $CURRENT_BACKUP..."
 for file in "${DOT_FILES[@]}"; do
-    cp --recursive $HOME_DIR/$file "$CURRENT_BACKUP"
+    cp --recursive $INSTALL_DIR/$file "$CURRENT_BACKUP"
 done
 cp --recursive $BIN_DIR "$CURRENT_BACKUP"
 
 # Overwrite existing env files.
-echo "Copying git environment config files from $(pwd) to $HOME_DIR"
+echo "Copying git environment config files from $(pwd) to $INSTALL_DIR"
 for file in "${DOT_FILES[@]}"; do
     cp --recursive ./$file $HOME_DIR
 done
@@ -33,5 +34,5 @@ for file in "${BIN_FILES[@]}"; do
     cp --recursive ./bin/$file $BIN_DIR 
 done
 
-echo "Environemnt config files installed."
+echo "dotfiles installed. :)"
 
