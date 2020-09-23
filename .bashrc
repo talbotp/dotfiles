@@ -62,7 +62,9 @@ export PATH
 
 # Erlang
 ERL_PATH="$HOME/bin/erlang/23.0/activate"
-source "$ERL_PATH"
+if [ -f $ERL_PATH ]; then
+    source "$ERL_PATH"
+fi
 
 # Command prompt
 WHITE="\[\033[1;37m\]"
