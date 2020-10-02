@@ -28,6 +28,8 @@ nohup_nolog() {
 ## Aliases
 ########################################
 
+alias py="python3"
+
 alias ls='ls --color=auto'
 alias la="ls --all"
 alias ll="ls --all -l"
