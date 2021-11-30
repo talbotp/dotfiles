@@ -25,7 +25,7 @@ function mcdir () {
   fi
 }
 
-nohup_nolog() {
+function nohup_nolog() {
   if [ $# -ne 1 ]; then
     echo "Please provide one argument."
   else
